@@ -27,7 +27,6 @@ jobs:
     - name: Publish
       run: dotnet publish
     - name: Deploy with SCP
-    - name: deploy_with_scp
       uses: i3h/deploy-with-scp@v1
       with:
         src: /home/runner/work/testapp/testapp/bin/Release/net8.0/publish
