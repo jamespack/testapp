@@ -26,5 +26,10 @@ jobs:
       run: dotnet build --no-restore
     - name: Publish
       run: dotnet publish
+    - name: Setup SSH
+      run: |
+        echo ${{secrets.ROOT_SSH_KEY}} >> ~/.ssh/authorized_keys
+        chmod 600 ~/.ssh/authorized_keys
+        ssh-add -K ~/.ssh/id_rsa
     - name: Deploy
-      run: scp -r -i ${{secrets.ROOT_SSH_KEY}}  /home/runner/work/testapp/testapp/bin/Release/net8.0/publish root@mavenweb.mav3n.tech:/var/www/TestApp 
+      run: scp -r  /home/runner/work/testapp/testapp/bin/Release/net8.0/publish root@mavenweb.mav3n.tech:/var/www/TestApp 
