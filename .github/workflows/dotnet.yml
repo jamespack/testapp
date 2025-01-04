@@ -30,9 +30,9 @@ jobs:
       run: |
         mkdir -p ~/.ssh
         eval `ssh-agent -s`
-        echo ${{secrets.ROOT_SSH_KEY}} > ~/.ssh/id_rsa
-        chmod 0600 ~/.ssh/id_rsa
-        cat ~/.ssh/id_rsa
-        ssh-add ~/.ssh/id_rsa
+        echo ${{secrets.MAV3N_TECH_SSH}} > ~/.ssh/mav3n.tech
+        chmod 0600 ~/.ssh/mav3.tech
+        cat ~/.ssh/mav3n.tech
+        ssh-add ~/.ssh/mav3n.tech
     - name: Deploy
-      run: scp -r  /home/runner/work/testapp/testapp/bin/Release/net8.0/publish root@mavenweb.mav3n.tech:/var/www/TestApp 
+      run: scp -r -i ~/.ssh/mav3n.tech /home/runner/work/testapp/testapp/bin/Release/net8.0/publish root@mavenweb.mav3n.tech:/var/www/TestApp 
