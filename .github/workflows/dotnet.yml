@@ -29,8 +29,9 @@ jobs:
     - name: Setup SSH
       run: |
         mkdir -p ~/.ssh
-        ssh-agent bash
+        eval `ssh-agent -s`
         echo ${{secrets.ROOT_SSH_KEY}} > ~/.ssh/id_rsa
+        cat ~/.ssh/id_rsa
         ssh-add ~/.ssh/id_rsa
     - name: Deploy
       run: scp -r  /home/runner/work/testapp/testapp/bin/Release/net8.0/publish root@mavenweb.mav3n.tech:/var/www/TestApp 
