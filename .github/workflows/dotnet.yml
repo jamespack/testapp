@@ -27,4 +27,4 @@ jobs:
     - name: Publish
       run: dotnet publish
     - name: Deploy
-      run: scp -i ${ROOT_SSH_KEY}-R /home/runner/work/testapp/testapp/bin/Release/net8.0/publish/* root@mavenweb.mav3n.tech:/var/www/TestApp 
+      run: scp -i ${ROOT_SSH_KEY} -R /home/runner/work/testapp/testapp/bin/Release/net8.0/publish/* root@mavenweb.mav3n.tech:/var/www/TestApp 
