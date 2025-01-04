@@ -32,6 +32,6 @@ jobs:
         src: /home/runner/work/testapp/testapp/bin/Release/net8.0/publish
         dest: /var/www/TestApp
         username: root
-        server-ip: mav3n.tech
+        server-ip: mavenweb.mav3n.tech
         ssh-key: ${{ secrets.MAV3N_TECH_SSH }}
    
