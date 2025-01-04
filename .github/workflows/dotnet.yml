@@ -27,11 +27,13 @@ jobs:
     - name: Publish
       run: dotnet publish
     - name: Deploy with SCP
-      uses: i3h/deploy-with-scp@v1
+      uses: nogsantos/scp-deploy@master
       with:
-        src: /home/runner/work/testapp/testapp/bin/Release/net8.0/publish
-        dest: /var/www/TestApp
-        username: root
-        server-ip: mavenweb.mav3n.tech
-        ssh-key: ${{ secrets.MAV3N_TECH_SSH }}
+        src: /home/runner/work/testapp/testapp/bin/Release/net8.0/publish/*
+        host: mavenweb.mav3n.tech
+        remote: /var/www/TestApp
+        port: 22
+        user: root
+        key: ${{ secrets.MAV3N_TECH_SSH }}
+    
    
