@@ -26,12 +26,13 @@ jobs:
       run: dotnet build --no-restore
     - name: Publish
       run: dotnet publish
-    - name: Setup SSH
-      run: |
-        mkdir -p ~/.ssh
-        eval `ssh-agent -s`
-        echo ${{secrets.MAV3N_TECH_SSH}} > ~/.ssh/mav3n.tech
-        chmod 0600 ~/.ssh/mav3n.tech
-        ssh-add ~/.ssh/mav3n.tech
-    - name: Deploy
-      run: scp -r -i ~/.ssh/mav3n.tech /home/runner/work/testapp/testapp/bin/Release/net8.0/publish root@mavenweb.mav3n.tech:/var/www/TestApp 
+    - name: Deploy with SCP
+    - name: deploy_with_scp
+      uses: i3h/deploy-with-scp@v1
+      with:
+        src: /home/runner/work/testapp/testapp/bin/Release/net8.0/publish
+        dest: /var/www/TestApp
+        username: root
+        server-ip: mav3n.tech
+        ssh-key: ${{ secrets.MAV3N_TECH_SSH }}
+   
