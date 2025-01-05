@@ -44,5 +44,6 @@ jobs:
         host: mavenweb.mav3n.tech
     # String that contains a private key for either key-based or hostbased user authentication (OpenSSH format)
         key: ${{ secrets.MAV3N_TECH_SSH }}
-        file: mav3n.tech  
+        user: root
+        port: 22
    
