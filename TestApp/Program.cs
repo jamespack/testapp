@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.DataProtection;
+using Microsoft.FluentUI.AspNetCore.Components;
 using TestApp.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,8 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
-
-builder.Services.AddDataProtection().PersistKeysToFileSystem(new DirectoryInfo("./keys"));
+builder.Services.AddFluentUIComponents();
 
 var app = builder.Build();
 
@@ -21,9 +20,9 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseStaticFiles();
 app.UseAntiforgery();
 
+app.MapStaticAssets();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 
