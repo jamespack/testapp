@@ -14,6 +14,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDataProtection().PersistKeysToDbContext<ApplicationDbContext>();
 builder.Services.AddSignalR();
+builder.Services.AddControllers();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -41,4 +42,5 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 app.MapHub<ChatHub>("/chatHub");
+app.MapControllers();
 app.Run();
