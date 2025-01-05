@@ -1,8 +1,9 @@
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.FluentUI.AspNetCore.Components;
 using TestApp.Components;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddDataProtection().PersistKeysToFileSystem(new DirectoryInfo("keys"));
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
