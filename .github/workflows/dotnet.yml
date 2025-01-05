@@ -37,5 +37,9 @@ jobs:
         key: ${{ secrets.MAV3N_TECH_SSH }}
     - name: Restart App
       run: |
-       ssh -i ${{ secrets.MAV3N_TECH_SSH}} root@mavenweb.mav3n.tech systemctl restart testapp.service
+       mkdir ~/.ssh
+       eval `ssh-agent -s`
+       echo ${{ secrets.MAV3N_TECH_SSH}} > ~/.ssh/mav3n.tech
+       chmod -R 0600 ~/.ssh
+       ssh -i ~/.ssh/mav3n.tech root@mavenweb.mav3n.tech systemctl restart testapp.service
    
