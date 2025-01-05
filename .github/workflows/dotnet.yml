@@ -25,11 +25,11 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Publish
-      run: dotnet publish -o ~/bin/release
+      run: dotnet publish
     - name: Deploy with SCP
       uses: nogsantos/scp-deploy@master
       with:
-        src: ~/bin/release/*
+        src: /home/runner/work/TestApp/TestApp/bin/Release/net9.0/publish
         host: mavenweb.mav3n.tech
         remote: /var/www/TestApp
         port: 22
