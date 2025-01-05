@@ -36,10 +36,13 @@ jobs:
         user: root
         key: ${{ secrets.MAV3N_TECH_SSH }}
     - name: Restart App
-      run: |
-       mkdir ~/.ssh
-       eval `ssh-agent -s`
-       echo ${{ secrets.MAV3N_TECH_SSH}} > ~/.ssh/mav3n.tech
-       chmod -R 0600 ~/.ssh
-       ssh -i ~/.ssh/mav3n.tech root@mavenweb.mav3n.tech systemctl restart testapp.service
+      uses: fifsky/ssh-action@v0.0.6
+      with:
+    # Command to execute on the remote server.
+        command: systemctl restart testapp.service
+    # Hostname or IP address of the server.
+        host: mavenweb.mav3n.tech
+    # String that contains a private key for either key-based or hostbased user authentication (OpenSSH format)
+        key: ${{ secrets.MAV3N_SSH_KEY}}
+          
    
