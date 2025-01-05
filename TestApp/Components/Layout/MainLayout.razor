@@ -1,23 +1,51 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
+<FluentLayout>
+    <FluentDesignTheme Mode="DesignThemeModes.Dark" StorageName="theme"/>
+    <FluentAppBar Orientation="@(Orientation.Horizontal)" class="navmenu">
+        <FluentAppBarItem Href="/" Match="NavLinkMatch.All" IconRest="HomeIcon()" IconActive="HomeIcon(active: true)" Text="Home"/>
+        <FluentAppBarItem Href="counter" IconActive="NumbersIcon(active: true)" IconRest="NumbersIcon()" Text="Counter"/>
+        <FluentAppBarItem Href="weather" IconActive="WeatherIcon(active: true)" IconRest="WeatherIcon()" Text="Weather" />
+        <FluentAppBarItem Href="greeter" IconActive="GreeterIcon(active: true)" IconRest="GreeterIcon()" Text="Greeter" />
+    </FluentAppBar>
+    <FluentStack Class="main" Orientation="Orientation.Vertical" Width="100%">
+        <FluentBodyContent Class="body-content">
+            <div class="content">
+                @Body
+            </div>
+        </FluentBodyContent>
+    </FluentStack>
+    <FluentFooter>
+        <a href="https://www.fluentui-blazor.net" target="_blank">Documentation and demos</a>
+        <FluentSpacer />
+        <a href="https://learn.microsoft.com/en-us/aspnet/core/blazor" target="_blank">About Blazor</a>
+    </FluentFooter>
+</FluentLayout>
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
-
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
-</div>
-
-<div id="blazor-error-ui">
+<div id="blazor-error-ui" data-nosnippet>
     An unhandled error has occurred.
-    <a href="" class="reload">Reload</a>
-    <a class="dismiss">🗙</a>
+    <a href="." class="reload">Reload</a>
+    <span class="dismiss">🗙</span>
 </div>
+
+
+@code {
+
+
+    private static Icon NumbersIcon(bool active = false) =>
+        active ? new Icons.Filled.Size24.NumberSymbolSquare()
+               : new Icons.Regular.Size24.NumberSymbolSquare();
+
+    private static Icon WeatherIcon(bool active = false) =>
+        active ? new Icons.Filled.Size24.WeatherPartlyCloudyDay()
+               : new Icons.Regular.Size24.WeatherPartlyCloudyDay();
+
+    private static Icon HomeIcon(bool active = false) =>
+        active ? new Icons.Filled.Size24.Home()
+               : new Icons.Regular.Size24.Home();
+
+    private static Icon GreeterIcon(bool active = false) =>
+        active ? new Icons.Filled.Size24.Megaphone()
+               : new Icons.Regular.Size24.Megaphone();
+
+ }
