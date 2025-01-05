@@ -29,11 +29,13 @@ jobs:
     - name: Deploy with SCP
       uses: nogsantos/scp-deploy@master
       with:
-        src: /home/runner/work/testapp/testapp/bin/Release/net8.0/publish/*
+        src: /home/runner/work/testapp/testapp/TestApp/bin/Release/net8.0/publish/*
         host: mavenweb.mav3n.tech
         remote: /var/www/TestApp
         port: 22
         user: root
         key: ${{ secrets.MAV3N_TECH_SSH }}
-    
+    - name: Restart App
+      run: |
+       ssh -i ${{ secrets.MAV3N_TECH_SSH}} root@mavenweb.mav3n.tech systemctl restart testapp.service
    
