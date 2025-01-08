@@ -28,8 +28,8 @@ jobs:
       run: dotnet publish
     - name: Deploy with SCP
       uses: nogsantos/scp-deploy@master
-      with:
-        src: /home/runner/work/testapp/testapp/TestApp/bin/Release/net9.0/publish/*
+      with: 
+        src: /home/runner/work/testapp/testapp/TestApp/bin/Release/net9.0/browser-wasm/publish/*
         host: mavenweb.mav3n.tech
         remote: /var/www/TestApp
         port: 22
